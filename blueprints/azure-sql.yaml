@@ -1,0 +1,39 @@
+formatVersion: 1
+inputs: {}
+resources:
+  resource_group:
+    type: Cloud.Azure.ResourceGroup
+    properties:
+      name: t48-resource-grp
+      useExisting: false
+  sql_db:
+    type: Cloud.Service.Azure.SQL.Database
+    properties:
+      name: sqldb-t48
+      region: West US
+      account: Trading Azure
+      server_name: '${resource.sql_server.name}'
+      resource_group_name: '${resource.resource_group.resourceName}'
+  sql_server:
+    type: Cloud.Service.Azure.SQL.Server
+    properties:
+      name: sqlsvr-T48
+      region: West US
+      account: Trading Azure
+      version: '12.0'
+      administrator_login: vmware
+      resource_group_name: '${resource.resource_group.resourceName}'
+      administrator_login_password: P@55w0rd1!
+  mha-svr:
+    type: Cloud.Azure.Machine
+    properties:
+      image: ubuntu
+      flavor: small
+      resourceGroupName: '${resource.resource_group.resourceName}'
+      networks:
+        - name: '${resource.network.name}'
+  network:
+    type: Cloud.Network
+    properties:
+      name: net1
+      networkType: existing
