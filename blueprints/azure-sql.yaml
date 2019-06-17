@@ -24,7 +24,7 @@ resources:
       administrator_login: vmware
       resource_group_name: '${resource.resource_group.resourceName}'
       administrator_login_password: P@55w0rd1!
-  mha-svr:
+  azure-svr:
     type: Cloud.Azure.Machine
     properties:
       image: ubuntu
@@ -35,5 +35,5 @@ resources:
   network:
     type: Cloud.Network
     properties:
-      name: net1
+      name: azure-net
       networkType: existing
