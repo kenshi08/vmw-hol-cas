@@ -27,12 +27,12 @@ resources:
           - apache2
         runcmd:
           - ufw allow 'Apache Full'
-          - git clone https://grantorchard:J2WsLWJJ^.4+j4J8Nh3+2hhMrqj9D@github.com/romant/dingo
+          - git clone https://github.com/kenshi08/dingo
           - cp -r /dingo/* /var/www/html/
         users:
-          - name: grant
+          - name: holuser
             ssh-authorized-keys:
-             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8rqxon4hRyV5cLNZczuJTe8dsZ33hpWHDU993r4iiY3t9bXqfmIHlIZ7dTL93nlvsgzVdOYMVGMOHMg/a1ZK0VRoKTS5BBhBGJejjDUfWRAtedZbM9JE5HHpks+L+nf8cOM14Os+Q3BV+z4MjYfIK5ZbV0IvUaY0kscQcE8cZoOTC2hHu/MPDneKJxG+HRQJfvqvnWz69/EXyi9iqtmOn0Xy9905qtbPNlDs1c4qF+zZ1qQCkMYP0Z4AVvLaPEJZlPmDnGqz5s1vVb130aXe1A11eq4RwgvZRxXW8i88pKqCGPuLRh7anqvSI15SLpA2KWvu7wD5CvhTisc/6TfVf
+             - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEApObvijLig4hunCYxM9ed+luR+6RfsBVygfs3LYZ1xIXGcpkfxByWW3LhZtxUsHa0MHR70pEkR3LuN1zkd0L2zIhwS6i6mDHlxV0mJsOJzs+P0ROu1nhZSS/0eUKEYVc/42QvMTjLXvxaT8e/qWoYFi3EA5iBptbsyjhXgoSeI9LkobsRktDjIUn/X0V5uzK4B7Li/tmkAZ+ASLC1OsgOou+L5OSaAL4nCBWOTRH8SRukDZ44ehrFFx19zFHUcvPtV11ntAN+UPPMDxoefexgZeNVHeeuJzzOA/1i2nNH0yDvJ0nXx3O8A3QksX5pJn5vSrrgL0/adYu9vjGVxSAG4Q==
             sudo: ['ALL=(ALL) NOPASSWD:ALL']
             groups: sudo
             shell: /bin/bash
