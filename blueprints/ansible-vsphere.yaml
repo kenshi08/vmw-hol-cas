@@ -1,0 +1,40 @@
+formatVersion: 1
+inputs: {}
+resources:
+  ansible:
+    type: Cloud.Ansible
+    properties:
+      host: '${resource.webserver.*}'
+      osType: linux
+      account: ansible-01a
+      username: holuser
+      groups:
+        - webservers
+      playbooks:
+        provision: /home/holuser/playbooks/web.yml
+      privateKeyFile: /root/.ssh/id_rsa
+      maxConnectionRetries: 10
+  webserver:
+    type: Cloud.vSphere.Machine
+    properties:
+      name: webserver
+      image: centos
+      flavor: small
+      networks:
+        - network: '${resource.webnet.id}'
+          assignment: static
+      constraints:
+        - tag: 'env:dev'
+      cloudConfig: |
+        users:
+          - name: holuser
+            ssh-authorized-keys:
+             - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuJwnUrzx7wGznj/1G9odoUs0ASX96EvNooXmNoW4Spx0UDVvveucYEK2SjrJbvTMiFIKb0jyHJWndapUe0Evw+doyYaiYYx2h73CaQWeio9cUo3UQ4wSSTCO14N3UVk+HHSVJLPqabVjAToNp24ccME3Cm3Rf1fZG00Jsxs+vAjrjxMmYVt8qwUZIcPzedUfrgZDt$
+            sudo: ['ALL=(ALL) NOPASSWD:ALL']
+            groups: sudo
+            shell: /bin/bash
+  webnet:
+    type: Cloud.vSphere.Network
+    properties:
+      name: webnet
+      networkType: existing
