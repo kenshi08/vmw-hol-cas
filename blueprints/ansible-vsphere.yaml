@@ -1,19 +1,6 @@
 formatVersion: 1
 inputs: {}
 resources:
-  ansible:
-    type: Cloud.Ansible
-    properties:
-      host: '${resource.webserver.*}'
-      osType: linux
-      account: ansible-01a
-      username: holuser
-      groups:
-        - webservers
-      playbooks:
-        provision: /home/holuser/playbooks/web.yml
-      privateKeyFile: /root/.ssh/id_rsa
-      maxConnectionRetries: 10
   webserver:
     type: Cloud.vSphere.Machine
     properties:
